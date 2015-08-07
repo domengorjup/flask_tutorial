@@ -83,3 +83,18 @@ def logout():
 @lm.user_loader 	#povezava s Flask-Login - dfiniraj funkcijo, ko nalozi uporabnika iz DB
 def load_user(id):
 	return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+    
+@app.route('/user/<nickname>') #user() function will be invoked with <nickname> parameter
+@login_required
+def user(nickname):
+    user = User.query.filter_by(nickname=nickname).first()
+    if User == None:
+        flash("User %s not found." % nickname)
+        return redirect(url_for('index'))
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html',
+                            user=user,
+                            posts=posts)
