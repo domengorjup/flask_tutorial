@@ -5,9 +5,28 @@ class User(db.Model):
     nickname = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+	
+	#True, razen ce se ne sme vpisat:
+    def is_authenticated(self):
+        return True
+
+    #True, razen ce ne sme biti aktiven (BAN):
+    def is_active(self):
+        return True
+
+    #True le za tiste, ki se naj ne bi vpisali
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        try:
+            return unicode(self.id)  # python 2
+        except NameError:
+            return str(self.id)  # python 3
 
     def __repr__(self):
         return '<User %r>' % (self.nickname)
+	
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
