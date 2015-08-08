@@ -1,0 +1,43 @@
+2015-08-08 06:43:43,599 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:45:38,966 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:45:53,407 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:46:10,830 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:46:30,662 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:47:03,264 ERROR: Exception on /edit [POST] [in D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py:1423]
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 758, in decorated_view
+    return func(*args, **kwargs)
+  File "D:\py_projects\flask_tutorial\app\views.py", line 114, in edit
+    if form.validate_on_submit():
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_wtf\form.py", line 166, in validate_on_submit
+    return self.is_submitted() and self.validate()
+  File "D:\py_projects\flask_tutorial\app\forms.py", line 21, in validate
+    if self.nickname.data == original_nickname:         # Ce se nickname ni spremenil (je enak originalnemu)
+NameError: name 'original_nickname' is not defined
+2015-08-08 06:48:24,479 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:48:25,830 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:49:53,936 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:50:39,998 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 06:51:41,143 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:06:15,959 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:07:02,375 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:07:48,498 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:08:59,193 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:09:21,206 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:10:27,455 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:11:30,950 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:11:42,821 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:13:31,303 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 07:14:39,198 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]

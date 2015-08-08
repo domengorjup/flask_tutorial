@@ -1,6 +1,7 @@
 from flask.ext.wtf import Form
 from wtforms import StringField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length
+from app.models import User
 
 class LoginForm(Form):
     openid = StringField('openid', validators=[DataRequired()])
@@ -15,10 +16,10 @@ class EditForm(Form):
         Form.__init__(self, *args, **kwargs)
         self.original_nickname = original_nickname
      
-    def validate(self)
+    def validate(self):
         if not Form.validate(self):
             return False
-        if self.nickname.data == original_nickname:         # Ce se nickname ni spremenil (je enak originalnemu)
+        if self.nickname.data == self.original_nickname:         # Ce se nickname ni spremenil (je enak originalnemu)
             return True
         user = User.query.filter_by(nickname=self.nickname.data).first()
         if user != None:
