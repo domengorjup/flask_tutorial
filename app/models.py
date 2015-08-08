@@ -1,6 +1,12 @@
 from app import db
 from hashlib import md5 # md5 hash to get avatars from gravatar.com
 
+# Followers - followed table - NOT a class, it only contains foreign keys (relationships)
+followers = db.Table('followers',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+    )
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nickname = db.Column(db.String(64), index=True, unique=True)
@@ -8,6 +14,12 @@ class User(db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime)
+    followed = db.relationship('User',
+                                secondary=followers,        # indicaes relationship table
+                                primaryjoin=(followers.c.follower_id == id),    # condition that links the primary (follower) user with relationship table
+                                secondaryjoin=(followers.c.followed_id == id),  # condition that links the secundary (followed) user with relationship table
+                                backref=db.backref('followers', lazy='dynamic'), #defines how this will be accessed from the 'followed' side (list of followers)
+                                lazy='dynamic')
 	
 	#True, razen ce se ne sme vpisat:
     def is_authenticated(self):
@@ -55,4 +67,3 @@ class Post(db.Model):
     def __repr__(self):
         return '<Post %r>' % (self.body)
         
-   
