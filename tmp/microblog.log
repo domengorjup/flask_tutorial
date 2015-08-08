@@ -46,3 +46,5 @@ NameError: name 'original_nickname' is not defined
 2015-08-08 09:19:35,043 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
 2015-08-08 09:19:47,302 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
 2015-08-08 09:19:59,083 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 10:26:04,177 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-08 10:26:34,849 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]

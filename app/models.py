@@ -41,7 +41,26 @@ class User(db.Model):
             
     def avatar(self, size): #get avatar from gravatar.com (if not, mistery man (d=mm) avatar)
         return 'http://gravatar.com/avatar/%s?d=mm&s=%d' %(md5(self.email.encode('utf-8')).hexdigest(), size)
-
+        
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+            return self         # Returns new ("updated") user object to be added to db
+    
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+            return self
+    
+    def is_following(self, user):
+        return self.followed.filter(followers.c.followed_id == user.id).count() > 0
+        
+    #Metoda, ki poišče poste uporabnikov, ki jim sledimo:
+    def followed_posts(self):
+        return Post.query.join(followers, (followers.c.followed_id == Post.user.id)).filter(followers.c.follower_id = self.id).order_by(Post.timestamp.desc())
+        '''
+        http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers-contacts-and-friends
+        '''
     def __repr__(self):
         return '<User %r>' % (self.nickname)
         
