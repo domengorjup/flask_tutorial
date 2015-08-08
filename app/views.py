@@ -85,9 +85,10 @@ def logout():
 
 						   
 #funkcija, ki nalozi uporabnika iz database:
-@lm.user_loader 	#povezava s Flask-Login - dfiniraj funkcijo, ko nalozi uporabnika iz DB
+@lm.user_loader 	#povezava s Flask-Login - definiraj funkcijo, ko nalozi uporabnika iz DB
 def load_user(id):
 	return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+
     
 @app.route('/user/<nickname>') #user() function will be invoked with <nickname> parameter
 @login_required
@@ -103,6 +104,7 @@ def user(nickname):
     return render_template('user.html',
                             user=user,
                             posts=posts)
+
                             
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
@@ -119,3 +121,12 @@ def edit():
         form.nickname.data = g.user.nickname
         form.about_me.data = g.user.about_me
     return render_template('edit.html', form=form)
+    
+    @app.errorhandler(404):
+    def not_found_error(error):
+        return render_template('404.html'), 404
+        
+    @app.errorhandler(500):
+    def internal_error(error):
+        db.session.rollback()       # ce je napaaka v bazi...
+        return render_template('500.html'), 500
