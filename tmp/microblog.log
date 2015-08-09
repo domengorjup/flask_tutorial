@@ -48,3 +48,448 @@ NameError: name 'original_nickname' is not defined
 2015-08-08 09:19:59,083 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
 2015-08-08 10:26:04,177 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
 2015-08-08 10:26:34,849 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:30:56,468 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:31:13,836 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:32:12,779 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:32:25,670 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:32:31,649 ERROR: Exception on /index [GET] [in D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py:1423]
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1473, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1666, in preprocess_request
+    rv = func()
+  File "D:\py_projects\flask_tutorial\app\views.py", line 12, in before_request
+    if g.user.is_authenticated():
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 297, in _get_current_object
+    return self.__local()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 46, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 794, in _get_user
+    current_app.login_manager._load_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 357, in _load_user
+    return self._load_from_cookie(request.cookies[cookie_name])
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 409, in _load_from_cookie
+    self.reload_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 325, in reload_user
+    user = self.user_callback(user_id)
+  File "D:\py_projects\flask_tutorial\app\views.py", line 91, in load_user
+    return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 819, in get
+    return self._get_impl(ident, loading.load_on_ident)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 852, in _get_impl
+    return fallback_fn(self, key)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\loading.py", line 219, in load_on_ident
+    return q.one()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2473, in one
+    ret = list(self)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2516, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2531, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 188, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=exc_value)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 181, in reraise
+    raise value.with_traceback(tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user [SQL: 'SELECT user.id AS user_id, user.nickname AS user_nickname, user.email AS user_email, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user \nWHERE user.id = ?'] [parameters: (2,)]
+2015-08-09 10:32:33,980 ERROR: Exception on /favicon.ico [GET] [in D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py:1423]
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1473, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1666, in preprocess_request
+    rv = func()
+  File "D:\py_projects\flask_tutorial\app\views.py", line 12, in before_request
+    if g.user.is_authenticated():
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 297, in _get_current_object
+    return self.__local()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 46, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 794, in _get_user
+    current_app.login_manager._load_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 357, in _load_user
+    return self._load_from_cookie(request.cookies[cookie_name])
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 409, in _load_from_cookie
+    self.reload_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 325, in reload_user
+    user = self.user_callback(user_id)
+  File "D:\py_projects\flask_tutorial\app\views.py", line 91, in load_user
+    return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 819, in get
+    return self._get_impl(ident, loading.load_on_ident)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 852, in _get_impl
+    return fallback_fn(self, key)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\loading.py", line 219, in load_on_ident
+    return q.one()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2473, in one
+    ret = list(self)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2516, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2531, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 188, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=exc_value)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 181, in reraise
+    raise value.with_traceback(tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user [SQL: 'SELECT user.id AS user_id, user.nickname AS user_nickname, user.email AS user_email, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user \nWHERE user.id = ?'] [parameters: (2,)]
+2015-08-09 10:32:36,133 ERROR: Exception on /favicon.ico [GET] [in D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py:1423]
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1473, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1666, in preprocess_request
+    rv = func()
+  File "D:\py_projects\flask_tutorial\app\views.py", line 12, in before_request
+    if g.user.is_authenticated():
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 297, in _get_current_object
+    return self.__local()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 46, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 794, in _get_user
+    current_app.login_manager._load_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 357, in _load_user
+    return self._load_from_cookie(request.cookies[cookie_name])
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 409, in _load_from_cookie
+    self.reload_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 325, in reload_user
+    user = self.user_callback(user_id)
+  File "D:\py_projects\flask_tutorial\app\views.py", line 91, in load_user
+    return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 819, in get
+    return self._get_impl(ident, loading.load_on_ident)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 852, in _get_impl
+    return fallback_fn(self, key)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\loading.py", line 219, in load_on_ident
+    return q.one()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2473, in one
+    ret = list(self)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2516, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2531, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 188, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=exc_value)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 181, in reraise
+    raise value.with_traceback(tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user [SQL: 'SELECT user.id AS user_id, user.nickname AS user_nickname, user.email AS user_email, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user \nWHERE user.id = ?'] [parameters: (2,)]
+2015-08-09 10:32:44,043 ERROR: Exception on /login [GET] [in D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py:1423]
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1473, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1666, in preprocess_request
+    rv = func()
+  File "D:\py_projects\flask_tutorial\app\views.py", line 12, in before_request
+    if g.user.is_authenticated():
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 297, in _get_current_object
+    return self.__local()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 46, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 794, in _get_user
+    current_app.login_manager._load_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 357, in _load_user
+    return self._load_from_cookie(request.cookies[cookie_name])
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 409, in _load_from_cookie
+    self.reload_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 325, in reload_user
+    user = self.user_callback(user_id)
+  File "D:\py_projects\flask_tutorial\app\views.py", line 91, in load_user
+    return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 819, in get
+    return self._get_impl(ident, loading.load_on_ident)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 852, in _get_impl
+    return fallback_fn(self, key)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\loading.py", line 219, in load_on_ident
+    return q.one()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2473, in one
+    ret = list(self)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2516, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2531, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 188, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=exc_value)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 181, in reraise
+    raise value.with_traceback(tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user [SQL: 'SELECT user.id AS user_id, user.nickname AS user_nickname, user.email AS user_email, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user \nWHERE user.id = ?'] [parameters: (2,)]
+2015-08-09 10:32:46,206 ERROR: Exception on /favicon.ico [GET] [in D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py:1423]
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1473, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1666, in preprocess_request
+    rv = func()
+  File "D:\py_projects\flask_tutorial\app\views.py", line 12, in before_request
+    if g.user.is_authenticated():
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 297, in _get_current_object
+    return self.__local()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 46, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 794, in _get_user
+    current_app.login_manager._load_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 357, in _load_user
+    return self._load_from_cookie(request.cookies[cookie_name])
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 409, in _load_from_cookie
+    self.reload_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 325, in reload_user
+    user = self.user_callback(user_id)
+  File "D:\py_projects\flask_tutorial\app\views.py", line 91, in load_user
+    return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 819, in get
+    return self._get_impl(ident, loading.load_on_ident)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 852, in _get_impl
+    return fallback_fn(self, key)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\loading.py", line 219, in load_on_ident
+    return q.one()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2473, in one
+    ret = list(self)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2516, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2531, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 188, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=exc_value)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 181, in reraise
+    raise value.with_traceback(tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user [SQL: 'SELECT user.id AS user_id, user.nickname AS user_nickname, user.email AS user_email, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user \nWHERE user.id = ?'] [parameters: (2,)]
+2015-08-09 10:32:48,352 ERROR: Exception on /favicon.ico [GET] [in D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py:1423]
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1473, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask\app.py", line 1666, in preprocess_request
+    rv = func()
+  File "D:\py_projects\flask_tutorial\app\views.py", line 12, in before_request
+    if g.user.is_authenticated():
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 338, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\werkzeug\local.py", line 297, in _get_current_object
+    return self.__local()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 46, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 794, in _get_user
+    current_app.login_manager._load_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 357, in _load_user
+    return self._load_from_cookie(request.cookies[cookie_name])
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 409, in _load_from_cookie
+    self.reload_user()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\flask_login.py", line 325, in reload_user
+    user = self.user_callback(user_id)
+  File "D:\py_projects\flask_tutorial\app\views.py", line 91, in load_user
+    return User.query.get(int(id)) #user id in Flask-Login is a string, we need int for database
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 819, in get
+    return self._get_impl(ident, loading.load_on_ident)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 852, in _get_impl
+    return fallback_fn(self, key)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\loading.py", line 219, in load_on_ident
+    return q.one()
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2473, in one
+    ret = list(self)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2516, in __iter__
+    return self._execute_and_instances(context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2531, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 914, in execute
+    return meth(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 323, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1010, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1146, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1341, in _handle_dbapi_exception
+    exc_info
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 188, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=exc_value)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\util\compat.py", line 181, in reraise
+    raise value.with_traceback(tb)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1139, in _execute_context
+    context)
+  File "D:\py_projects\flask_tutorial\flask\lib\site-packages\sqlalchemy\engine\default.py", line 450, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user [SQL: 'SELECT user.id AS user_id, user.nickname AS user_nickname, user.email AS user_email, user.about_me AS user_about_me, user.last_seen AS user_last_seen \nFROM user \nWHERE user.id = ?'] [parameters: (2,)]
+2015-08-09 10:33:02,530 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:33:03,818 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:35:53,182 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:35:54,523 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:36:50,208 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:37:37,066 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:37:53,902 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:38:08,510 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]
+2015-08-09 10:38:09,832 INFO: microblog startup [in D:\py_projects\flask_tutorial\app\__init__.py:39]

@@ -5,7 +5,7 @@ from hashlib import md5 # md5 hash to get avatars from gravatar.com
 followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
-    )
+)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -57,7 +57,7 @@ class User(db.Model):
         
     #Metoda, ki poišče poste uporabnikov, ki jim sledimo:
     def followed_posts(self):
-        return Post.query.join(followers, (followers.c.followed_id == Post.user.id)).filter(followers.c.follower_id = self.id).order_by(Post.timestamp.desc())
+        return Post.query.join(followers, (followers.c.followed_id == Post.user_id)).filter(followers.c.follower_id == self.id).order_by(Post.timestamp.desc())
         '''
         http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers-contacts-and-friends
         '''
