@@ -15,7 +15,7 @@ class User(db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime)
     followed = db.relationship('User',
-                                secondary=followers,        # indicaes relationship table
+                                secondary=followers,        # indicates relationship table
                                 primaryjoin=(followers.c.follower_id == id),    # condition that links the primary (follower) user with relationship table
                                 secondaryjoin=(followers.c.followed_id == id),  # condition that links the secundary (followed) user with relationship table
                                 backref=db.backref('followers', lazy='dynamic'), #defines how this will be accessed from the 'followed' side (list of followers)
