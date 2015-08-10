@@ -1,12 +1,16 @@
 from app import db, app
 from hashlib import md5 # md5 hash to get avatars from gravatar.com
 import sys
-if sys.version_info >= (3,0):
-    enable_search = False
-else:
-    enable_search = True
-    import flask.ext.whooshalchemy as whooshalchemy
+# if sys.version_info >= (3, 0):
+    # enable_search = False
+# else:
+    # enable_search = True
+    # import flask.ext.whooshalchemy as whooshalchemy
 
+enable_search = True
+import flask.ext.whooshalchemy as whooshalchemy
+    
+    
 # Followers - followed table - NOT a class, it only contains foreign keys (relationships)
 followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
@@ -86,7 +90,7 @@ class User(db.Model):
 class Post(db.Model):
     __searchable__ = ['body']       # Onyl post bodies will be indexed
 
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

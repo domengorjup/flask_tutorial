@@ -175,8 +175,8 @@ def search():
 def search_results(query):
     results = Post.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
     return render_template('search_results.html',
-                            query=query,
-                            results=results)
+                           query=query,
+                           results=results)
 
     
 @app.errorhandler(404)
