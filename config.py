@@ -20,13 +20,15 @@ WHOOSH_BASE = os.path.join(basedir, 'search.db')
 MAX_SEARCH_RESULTS = 50
 
 # mail server settings
-MAIL_SERVER = 'localhost'
-MAIL_PORT = 25
-MAIL_USERNAME = None
-MAIL_PASSWORD = None
+MAIL_SERVER = 'smtp.mail.yahoo.com'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = os.environ.get('Y_MAIL_USERNAME')   # SET USER VARIABLE!
+MAIL_PASSWORD = os.environ.get('Y_MAIL_PASSWORD')
 
 # administrator list
-ADMINS = ['domengorjup@yahoo.com']
+ADMINS = ['domengorjup@yahoo.com', 'domen_gorjup@hotmail.com']
 
 # pagination
 POSTS_PER_PAGE = 3
