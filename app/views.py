@@ -1,9 +1,10 @@
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
-from .forms import LoginForm, EditForm
-from .models import User
+from .forms import LoginForm, EditForm, PostForm, SearchForm
+from .models import User, Post
 from datetime import datetime
+from config import POSTS_PER_PAGE, MAX_SEARCH_RESULTS
 
 @app.before_request 	# se izvede preden so klicane view funkcije
 def before_request():
@@ -13,28 +14,25 @@ def before_request():
         g.user.last_seen = datetime.utcnow()
         db.session.add(g.user)
         db.session.commit()
+        g.search_form = SearchForm()        # defined here, so it's available to all views
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
+@app.route('/index/<int:page>', methods=['GET', 'POST'])
 @login_required 			# ce pred klicom nisi vpisan, te poslje na /login
-def index():
-	user = g.user
-	posts = [{
-				'author':{'nickname':'Ana'},
-				'body':'Domen, ki si ti!'
-				},
-				{
-				'author':{'nickname':'Domen'},
-				'body':'tule, ki si TI?!'
-				},
-				{
-				'author':{'nickname':'David'},
-				'body':'pa ti je ke?'
-				}]
-	return render_template('index.html',
-							title='Home',
-							user=user,
-							posts=posts)
+def index(page=1):
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, timestamp=datetime.utcnow(), author=g.user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))   # so that refresh doesn't re-submit the post
+    posts = g.user.followed_posts().paginate(page, POSTS_PER_PAGE, False)
+    return render_template('index.html',
+                            title='Home',
+                            form=form,
+                            posts=posts)
 							
 '''
 In Flask-Login you can protect views against non logged in users by adding the login_required decorator. 
@@ -75,13 +73,14 @@ def after_login(resp):
         #make the user follow himself
         db.session.add(user.follow(user))
         db.session.commit()
-    remember_me= False
+        remember_me= False
     if 'remember_me' in session:
         remember_me = session['remember_me']
         session.pop('remember_me', None)
     login_user(user, remember = remember_me) 	#funkcija modula Flas_Login, potrdi da uporabnik vpisan
     return redirect(request.args.get('next') or url_for('index')) 	#nadaljuj na naslednjo stran ali index, ce ni naslednje v requestu
 
+    
 @app.route('/logout')
 def logout():
     logout_user()
@@ -95,16 +94,14 @@ def load_user(id):
 
     
 @app.route('/user/<nickname>') #user() function will be invoked with <nickname> parameter
+@app.route('/user/<nickname>/<int:page>', methods=['GET', 'POST'])
 @login_required
-def user(nickname):
+def user(nickname, page=1):
     user = User.query.filter_by(nickname=nickname).first()
     if user == None:
         flash("User %s not found." % nickname)
         return redirect(url_for('index'))
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'}
-    ]
+    posts = user.posts.paginate(page, POSTS_PER_PAGE, False)
     return render_template('user.html',
                             user=user,
                             posts=posts)
@@ -163,6 +160,24 @@ def unfollow(nickname):
     db.session.commit()
     flash('You stopped following %s!' % nickname)
     return redirect(url_for('user', nickname=nickname))
+    
+    
+@app.route('/search', methods=['POST'])
+@login_required
+def search():
+    if not g.search_form.validate_on_submit():
+        return redirect(url_for('index'))
+    return redirect(url_for('search_results', query=g.search_form.search.data))     # redirect, to avoid sending form data on refresh...
+    
+    
+@app.route('/search_results/<query>')
+@login_required
+def search_results(query):
+    results = Post.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
+    return render_template('search_results.html',
+                            query=query,
+                            results=results)
+
     
 @app.errorhandler(404)
 def not_found_error(error):
